@@ -6,35 +6,43 @@ const config = {
   oem: 1,
   psm: 3,
 };
-console.log("ddd11111");
-console.log("🚀 ~ getOcr ~ __dirname:", __dirname);
+
 const getOcr = async () => {
+  let mutualFundName = "";
+  let amount = 0;
+
   // Set the path to the image in the local "image" folder
-  const img = path.join(__dirname, "image", "กองทุน.jpg"); // Change "your-image.jpg" to the actual file name
+  const img = path.join(__dirname, "image", "ehd.jpg");
 
-  tesseract
-    .recognize(img, config)
-    .then((text) => {
-      console.log("Result:", text);
+  try {
+    // Wait for tesseract to finish recognizing the text
+    const text = await tesseract.recognize(img, config);
+    console.log("Result:", text);
 
-      const regex =
-        /เงินลงทุน \(บาท\):\s*(\d+(?:,\d{3})*(?:\.\d{2})?)\s+กองทุน:\s*(T\w+-\w+)/;
+    // Match the amount using regex
+    const regex = /เงินลงทุน \(บาท\)\s+([\d,]+\.\d{2})/;
+    const match = text.match(regex);
+    if (match) {
+      amount = match[1].replace(/,/g, ""); // remove commas
+      console.log("test_regex", amount); // outputs: 2000
+    } else {
+      console.log("No match found");
+    }
 
-      const match = text.match(regex);
+    // Extract mutual fund name
+    const mutualFundRegex = /เลขที่บัญชี\s+\d+\s+([A-Z0-9\-()]+)/;
+    const mutualFundMatch = text.match(mutualFundRegex);
+    if (mutualFundMatch) {
+      mutualFundName = mutualFundMatch[1];
+      console.log("Mutual Fund Name:", mutualFundName); // Outputs: TUSEQ-UH
+    } else {
+      console.log("No mutual fund name found");
+    }
+  } catch (error) {
+    console.log(error.message);
+  }
 
-      if (match) {
-        const investmentAmount = match[1]; // This will capture the amount (e.g., "2,000.00")
-        const fundName = match[2]; // This will capture the fund name (e.g., "TUSEQ-UH")
-
-        console.log("Investment Amount:", investmentAmount);
-        console.log("Fund Name:", fundName);
-      } else {
-        console.log("No match found.");
-      }
-    })
-    .catch((error) => {
-      console.log(error.message);
-    });
+  return { name: mutualFundName, value: amount };
 };
 
 module.exports = { getOcr };

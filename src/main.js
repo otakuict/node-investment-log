@@ -5,8 +5,8 @@ const port = 3000;
 const ocr = require("./ocr");
 
 app.get("/", async (req, res) => {
-  await ocr.getOcr();
-  await res.send("Hello World!");
+  const resp = await ocr.getOcr();
+  await res.json(resp);
 });
 //
 app.listen(port, () => {
