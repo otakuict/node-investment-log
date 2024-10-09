@@ -1,0 +1,19 @@
+{
+  "name": "node_ocr",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon  ./src/main.js "
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.0",
+    "fs-extra": "^11.2.0",
+    "node-tesseract-ocr": "^2.2.1",
+    "nodemon": "^3.1.7"
+  }
+}
