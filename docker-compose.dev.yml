@@ -20,13 +20,13 @@ services:
   frontend:
     build:
       context: ../node_ocr_fe # Relative path to the frontend folder
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
     volumes:
       - ../node_ocr_fe:/usr/src/app
     ports:
       - "3001:3000" # Expose frontend on port 3001
     environment:
-      - CHOKIDAR_USEPOLLING=true
+      - WATCHPACK_POLLING=true
     networks:
       - app-network
     depends_on:
