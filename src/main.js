@@ -10,7 +10,7 @@ app.use(
     origin: "http://localhost:3001", // Allow only requests from the frontend
   })
 );
-
+console.log("action");
 app.get("/get-ocr", async (req, res) => {
   const resp = await ocr.getOcr();
   await res.json(resp);
@@ -19,4 +19,3 @@ app.get("/get-ocr", async (req, res) => {
 app.listen(port, () => {
   console.log(` app listening on port ${port}`);
 });
-//sdf
