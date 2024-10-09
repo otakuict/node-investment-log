@@ -8,11 +8,12 @@ const config = {
 };
 
 const getOcr = async () => {
+  console.log("******call api********");
   let mutualFundName = "";
   let amount = 0;
 
   // Set the path to the image in the local "image" folder
-  const img = path.join(__dirname, "image", "ehd.jpg");
+  const img = path.join(__dirname, "image", "กองทุน.jpg");
 
   try {
     // Wait for tesseract to finish recognizing the text
@@ -30,7 +31,7 @@ const getOcr = async () => {
     }
 
     // Extract mutual fund name
-    const mutualFundRegex = /เลขที่บัญชี\s+\d+\s+([A-Z0-9\-()]+)/;
+    const mutualFundRegex = /เลขที่บัญชี\s+\d+\s+([A-Z0-9\-() ]+)/;
     const mutualFundMatch = text.match(mutualFundRegex);
     if (mutualFundMatch) {
       mutualFundName = mutualFundMatch[1];
