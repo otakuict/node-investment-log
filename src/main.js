@@ -7,7 +7,8 @@ const ocr = require("./ocr");
 
 app.use(
   cors({
-    origin: "http://ec2-54-66-146-109.ap-southeast-2.compute.amazonaws.com", // Allow only requests from the frontend
+    origin:
+      "http://ec2-54-66-146-109.ap-southeast-2.compute.amazonaws.com:3001", // Allow only requests from the frontend
   })
 );
 console.log("action");
