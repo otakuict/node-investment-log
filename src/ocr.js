@@ -7,7 +7,7 @@ const config = {
   psm: 3,
 };
 
-const getOcr = async () => {
+const getOcr = async (upload_img) => {
   console.log("******call api********");
   let mutualFundName = "";
   let amount = 0;
@@ -17,7 +17,7 @@ const getOcr = async () => {
 
   try {
     // Wait for tesseract to finish recognizing the text
-    const text = await tesseract.recognize(img, config);
+    const text = await tesseract.recognize(upload_img, config);
     console.log("Result:", text);
 
     // Match the amount using regex
