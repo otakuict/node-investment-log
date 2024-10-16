@@ -1,4 +1,4 @@
-FROM node:18-alpine
+FROM node:18-buster-slim
 
 RUN apt update && \
     apt install -y software-properties-common && \
