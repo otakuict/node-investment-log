@@ -14,7 +14,7 @@ const upload = multer({ storage: storage });
 
 app.use(
   cors({
-    origin: "http://54.66.146.109:3001",
+    origin: "ec2-54-66-146-109.ap-southeast-2.compute.amazonaws.com:3001",
     credentials: true, // Allow credentials like cookies, tokens, etc.
   })
 );
