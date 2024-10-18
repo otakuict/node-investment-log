@@ -32,7 +32,7 @@ async function getlogs() {
   await writeJsonFile(filePath, data);
 
   // Step 5: Return the removed entry
-  return oldestEntry; // Return the entire removed entry
+  return oldestEntry || { name: "", value: "" };
 }
 
 module.exports = { getlogs, writeJsonFile, readJsonFile };
