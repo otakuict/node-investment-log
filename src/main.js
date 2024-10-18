@@ -13,11 +13,7 @@ const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
 app.use(
-  cors({
-    origin:
-      "http://ec2-54-66-146-109.ap-southeast-2.compute.amazonaws.com:3001",
-    credentials: true, // Allow credentials like cookies, tokens, etc.
-  })
+  cors()
 );
 
 // Handle POST requests for processing image without saving to disk
